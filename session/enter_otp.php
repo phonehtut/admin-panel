@@ -40,7 +40,7 @@ if ($status === 'success') {
                 <?php
                 if (isset($_SESSION['otp_error'])) {
                     echo '<div class="alertt-danger" role="alert">' . htmlspecialchars($_SESSION['otp_error']) . '</div>';
-                    unset($_SESSION['otp_error']); // Remove the error message from the session after displaying it
+                    unset($_SESSION['otp_error']); // Remove the error message from the session after displaying itt
                 }
                 ?>
                 <?php if (isset($error)) { ?>
