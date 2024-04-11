@@ -9,8 +9,8 @@ if (!isset($_SESSION["email"])) {
 }
 
 // Include database connection
-include 'header.php';
-include '../dbconnect/dbconn.php';
+include '../header.php';
+include '../../dbconnect/dbconn.php';
 
 // Check if ID parameter is provided in the URL
 if (!isset($_GET['id'])) {
@@ -111,7 +111,7 @@ $conn->close();
                             <select class="form-select" id="class" aria-label="Default select example" name="class">
                                 <option value="" selected disabled>--Select Class--</option>
                                 <?php
-                                include '../dbconnect/dbconn.php';
+                                include '../../dbconnect/dbconn.php';
 
                                 // Query to fetch unique class values from the 'class' column in the 'users' table
                                 $sql = "SELECT class FROM batch";
@@ -149,7 +149,8 @@ $conn->close();
             <div class="col-md-2"></div>
     </div>
     </form>
-
+    <script src="/include/loader.js"></script>
+    
     <?php include '../include/footer.php'; ?>
 </body>
 
