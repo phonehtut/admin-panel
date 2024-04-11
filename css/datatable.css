@@ -1,0 +1,59 @@
+ /* Custom styles for DataTable
+ #sortTable_wrapper {
+     padding: 20px;
+     border: 1px solid #ccc;
+     border-radius: 5px;
+     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+     margin-bottom: 10px;
+ }
+
+ #sortTable th {
+     background-color: #f2f2f2;
+     font-weight: bold;
+     text-align: center;
+ }
+
+ #sortTable td,
+ #sortTable th {
+     padding: 8px;
+     border: 1px solid #ddd;
+ }
+
+ #sortTable tbody tr:nth-child(even) {
+     background-color: #f9f9f9;
+ }
+
+ #sortTable tbody tr:hover {
+     background-color: #f2f2f2;
+ }
+
+ .dataTables_length {
+     margin-bottom: 10px;
+ } */
+
+ /* Custom search button styles */
+ .search-btn {
+     margin-left: 10px;
+     padding: 5px 10px;
+     background-color: #007bff;
+     color: #fff;
+     border: none;
+     border-radius: 3px;
+     cursor: pointer;
+ }
+
+ :root {
+     --primary-color: rgb(187, 82, 187);
+     /* Define your desired primary color */
+ }
+
+ /* Override Bootstrap's default primary color */
+ .btn-primary,
+ .btn-primary:hover,
+ .btn-primary:focus {
+     color: #fff;
+     background-color: var(--primary-color);
+     /* Use the custom property */
+     border-color: var(--primary-color);
+     /* Use the custom property */
+ }
