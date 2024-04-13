@@ -127,6 +127,9 @@
                     <div class="nav-item">
                         <a class="nav-link <?php echo ($_SERVER['PHP_SELF'] == '/member.php')? 'active' : ''?>" aria-current="page" href="<?php echo htmlspecialchars($url . 'member'); ?>">Member</a>
                     </div>
+                    <div class="nav-item">
+                        <a class="nav-link <?php echo ($_SERVER['PHP_SELF'] == '/server_admin.php')? 'active' : ''?>" aria-current="page" href="<?php echo htmlspecialchars($url . 'server_admin'); ?>">Server Access</a>
+                    </div>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             <i class="fa fa-user"></i>

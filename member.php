@@ -72,6 +72,7 @@ $result = $conn->query($sql);
                 <th scope="col" class="text-center">Name</th>
                 <th scope="col" class="text-center">Email</th>
                 <th scope="col" class="text-center">Role</th>
+                <th scope="col" class="text-center">Status</th>
                 <th scope="col" class="text-center">Action</th>
             </tr>
         </thead>
@@ -85,6 +86,7 @@ $result = $conn->query($sql);
                 <td class='text-center'>" . $row["name"] . "</td>
                 <td class='text-center'>" . $row["email"] . "</td>
                 <td class='text-center'>" . $row["role"] . "</td>
+                <td class='text-center'>" . $row["status"] . "</td>
                 <td>
                     <a href='action/edit/member.php?id=" . $row['id'] . "' class='btn btn-primary btn-sm'><i class='fas fa-edit'></i> Edit</a>
                     <a href='#' class='btn btn-danger btn-sm' data-bs-toggle='modal' data-bs-target='#deleteModal_" . $row['id'] . "'>
@@ -102,7 +104,7 @@ $result = $conn->query($sql);
                             <button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>
                         </div>
                         <div class='modal-body'>
-                            Are you sure you want to delect this Batch? The Batch name is " . $row['batch_name'] . "
+                            Are you sure you want to delect this Member? The  name is " . $row  ['name'] . "
                         </div>
                         <div class='modal-footer'>
                             <button type='button' class='btn btn-secondary' data-bs-dismiss='modal'>Cancel</button>

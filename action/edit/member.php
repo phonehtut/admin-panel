@@ -15,10 +15,20 @@ error_reporting(E_ALL);
 include '../header.php';
 include '../../dbconnect/dbconn.php';
 
-// Check if ID parameter is provided in the URL
-if (!isset($_GET['id'])) {
-    // Redirect to the student list page if ID parameter is not provided
-    header("Location: /batch.php");
+// Only Access For Role is Founder and Server Admin
+if (
+    !isset($_SESSION['email']) ||
+    $_SESSION['status'] !== 'active' ||
+    ($_SESSION['role'] !== 'server admin' && $_SESSION['role'] !== 'founder')
+) {
+    // Set an error message in the session
+    $_SESSION['error_message'] = 'You do not have permission to access this page.';
+
+    // Display a JavaScript alert and then redirect back to the previous page
+    echo "<script>";
+    echo "alert('You do not have permission to access this page.');";
+    echo "window.history.back();";
+    echo "</script>";
     exit();
 }
 
