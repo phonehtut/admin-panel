@@ -35,8 +35,8 @@ $name = '';
 $host = '';
 $username = '';
 $password = '';
-$ip_address_4 = '';
-$ip_address_6 = '';
+$ip4 = '';
+$ip6 = '';
 $port = '';
 $database = '';
 $remark = '';
@@ -83,7 +83,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Update student information in the database
     $sql = "UPDATE server_admin_access SET name=?, host=?, username=?, password=?, ip_address_4=?, ip_address_6=?, port=?, database_name=?, remark=? WHERE id=?";
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param("ssssisiss", $name, $host, $username, $password, $ip4, $ip6, $port, $database, $remark);
+    $stmt->bind_param("ssssssissi", $name, $host, $username, $password, $ip4, $ip6, $port, $database, $remark, $id);
 
     if ($stmt->execute()) {
         // Redirect back to the student list page after successful update
