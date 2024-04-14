@@ -68,7 +68,7 @@ update_member() {
     # Prompt for new data
     read -p "Enter new name (or leave blank to keep current value): " name
     read -p "Enter new email (or leave blank to keep current value): " email
-    read -s -p "Enter new password (or leave blank to keep current value): " password
+    read -p "Enter new password (or leave blank to keep current value): " "password"
     echo
     if [ -n "$password" ]; then
         password_md5=$(echo -n "$password" | md5sum | awk '{print $1}')
@@ -116,10 +116,6 @@ update_member() {
         echo "Failed to update record or no changes were made."
     fi
 }
-
-
-
-
 
 # Function to delete a member
 delete_member() {

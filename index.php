@@ -1,4 +1,15 @@
-<?php require "include/header.php"; ?>
+<?php 
+
+session_start();
+
+// Check if user is not logged in, redirect to logout.php
+if (!isset($_SESSION["email"])) {
+    header("Location: /session/logout.php");
+    exit();
+}
+
+include "include/header.php";
+?>
 
 <style>
     .container{

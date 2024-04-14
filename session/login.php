@@ -62,7 +62,7 @@ function authenticate_user($conn, $email, $password)
 function record_login_history($conn, $user_id, $email)
 {
     $ip_address = $_SERVER['REMOTE_ADDR'];
-    $timestamp = date("Y-m-d H:i:s");
+    $timestamp = date('Y-m-d H:i:s', strtotime('+6 hours 30 minutes'));
 
     // Prepare and execute the SQL query to insert login history record
     $stmt = $conn->prepare("INSERT INTO login_history (user_id, email, ip_address, login_time) VALUES (?, ?, ?, ?)");
