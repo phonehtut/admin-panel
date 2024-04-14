@@ -57,7 +57,7 @@ $result = $conn->query($sql);
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         <?php endif; ?>
-        <table class="table table-striped table-hover text-center table-bordered" id="sortTable">
+        <table class="table table-striped table-hover text-center table-bordered table-sm" id="sortTable">
             <thead>
                 <tr>
                     <th scope="col">#</th>
@@ -92,7 +92,7 @@ $result = $conn->query($sql);
                 <td>" . $row["Batch"] . "</td>  
                 <td>" . $row["os_version"] . "</td>
                 <td>
-                    <a href='action/edit/student.php?id=" . $row['id'] . "' class='btn btn-primary btn-sm'><i class='fas fa-edit'></i> Edit</a>
+                    <a href='action/edit/student.php?id=" . $row['id'] . "' class='btn btn-primary btn-sm my-3'><i class='fas fa-edit'></i> Edit</a>
                     <a href='#' class='btn btn-danger btn-sm' data-bs-toggle='modal' data-bs-target='#deleteModal_" . $row['id'] . "'>
                     <i class='fas fa-trash'></i> Delete
                 </a>

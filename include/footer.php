@@ -21,9 +21,9 @@
             "paging": true, // Enable pagination
             "searching": true, // Disable search functionality
             "ordering": true, // Enable sorting
-            "info": false, // Show information summary
+            "info": true, // Show information summary
             "scrollX": false, // Horizontal scrolling
-            "scrollY": "300px", // Vertical scrolling
+            "scrollY": "350px", // Vertical scrolling
             "scrollCollapse": true, // Collapse table when smaller than scrollY
             // Add custom styling
             "columnDefs": [{

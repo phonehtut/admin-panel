@@ -1,111 +1,128 @@
-<?php 
-// Start the session
-session_start();
+<?php require "include/header.php"; ?>
 
-// Check if user is not logged in, redirect to logout.php
-if (!isset($_SESSION["email"])) {
-    header("Location: /session/logout.php");
-    exit();
+<style>
+    .container{
+    margin-top:100px;
 }
 
-// Check if the user status is not active, redirect to login.php with error message
-if ($_SESSION['status'] !== 'active') {
-    // Set an error message in the session
-    $_SESSION['error_message'] = 'Your account status is not active.';
+.counter-box {
+	display: block;
+	background: #f6f6f6;
+	padding: 40px 20px 37px;
+	text-align: center;    
+    border-radius: 20px;
+}
+
+.counter-box p {
+	margin: 5px 0 0;
+	padding: 0;
+	color: #909090;
+	font-size: 18px;
+	font-weight: 500
+}
+
+.counter-box i {
+	font-size: 60px;
+	margin: 0 0 15px;
+	color: #d2d2d2;
+}
+
+.counter { 
+	display: block;
+	font-size: 32px;
+	font-weight: 700;
+	color: #666;
+	line-height: 28px
+}
+
+.counter-box.colored {
+      background: #3acf87;
+}
+
+
+.counter-box.colored p,
+.counter-box.colored i,
+.counter-box.colored .counter {
+	color: #fff
+}
+</style>
+
+<ul class="nav nav-tabs my-5">
+  <li class="nav-item">
+    <a class="nav-link active" aria-current="page" href="/">Home</a>
+  </li>
+  <li class="nav-item">
+        <a class="nav-link" href="/graph.php">Graph View</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="/monthstd.php">Monthly List</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+    </li>
+</ul>
+
+<div class="container">
     
-    // Redirect to login.php
-    header("Location: /session/login.php");
-    exit();
-}
+    <div class="row">
 
-include "include/header.php";
-// Include database connection
-include 'dbconnect/dbconn.php';
-
-// Query to fetch student list
-$sql = "SELECT * FROM users";
-$result = $conn->query($sql);
-?>
-
-<div class="container-fulid mx-4">
-    <h3 class="py-4 text-center">Students List</h3>
-    <a href="#" class="btn btn-primary btn-sm col-auto float-end mb-3">Add New</a>
-    <?php if(isset($_GET['success']) && $_GET['success'] == 'true'): ?>
-    <div class="alert alert-success alert-dismissible fade show" role="alert">
-        Student record deleted successfully.
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
-    <?php endif; ?>
-    <table class="table table-striped table-hover text-center table-bordered">
-        <thead>
-            <tr>
-                <th scope="col">#</th>
-                <th scope="col">Registion Date</th>
-                <th scope="col">Name</th>
-                <th scope="col">Email</th>
-                <th scope="col">Phone Number</th>
-                <th scope="col">birth_date</th>
-                <th scope="col">Age</th>
-                <th scope="col">Gender</th>
-                <th scope="col">Class</th>
-                <th scope="col">Batch</th>
-                <th scope="col">Os</th>
-                <th colspan="2">Action</th>
-            </tr>
-        </thead>
-        <tbody>
-        <?php
-if ($result->num_rows > 0) {
-    // Output data of each row
-    while ($row = $result->fetch_assoc()) {
-        echo "<tr>
-                <td>" . $row["id"] . "</td>
-                <td>" . $row["start_date"] . "</td>
-                <td>" . $row["name"] . "</td>
-                <td>" . $row["email"] . "</td>
-                <td>" . $row["phone_number"] . "</td>
-                <td>" . $row["birth_date"] . "</td>
-                <td>" . $row["age"] . "</td>
-                <td>" . $row["gender"] . "</td>
-                <td>" . $row["Class"] . "</td>
-                <td>" . $row["Batch"] . "</td>  
-                <td>" . $row["os_version"] . "</td>
-                <td>
-                    <a href='#' class='btn btn-primary btn-sm'><i class='fas fa-edit'></i> Edit</a>
-                </td>
-                <td>
-                    <a href='#' class='btn btn-danger btn-sm' data-bs-toggle='modal' data-bs-target='#deleteModal_" . $row['id'] . "'>
-                        <i class='fas fa-trash'></i> Delete
-                    </a>
-                </td>
-            </tr>";
-
-        // Modal for delete confirmation
-        echo "<div class='modal fade' id='deleteModal_" . $row['id'] . "' tabindex='-1' aria-labelledby='deleteModalLabel' aria-hidden='true'>
-                <div class='modal-dialog'>
-                    <div class='modal-content'>
-                        <div class='modal-header'>
-                            <h5 class='modal-title' id='deleteModalLabel'>Confirm Delete</h5>
-                            <button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>
-                        </div>
-                        <div class='modal-body'>
-                            Are you sure you want to delete this student?
-                        </div>
-                        <div class='modal-footer'>
-                            <button type='button' class='btn btn-secondary' data-bs-dismiss='modal'>Cancel</button>
-                            <a href='action/std_delete.php?id=" . $row['id'] . "' class='btn btn-danger'>Delete</a>
-                        </div>
-                    </div>
-                </div>
-            </div>";
-    }
-} else {
-    echo "<tr><td colspan='12'>No students found</td></tr>";
-}
-?>
-
-        </tbody>
-    </table>
-
-    <?php include "include/footer.php"; ?>
+	<div class="four col-md-3 mb-5">
+		<div class="counter-box">
+        <i class="fa-duotone fa-user-graduate"></i>
+			<span class="counter"><?php include "count/student.php"; ?></span>
+			<p>Student List</p>
+		</div>
+	</div>
+	<div class="four col-md-3 mb-5">
+		<div class="counter-box">
+        <i class="fa-solid fa-user-magnifying-glass"></i>
+			<span class="counter"><?php include "count/review.php"; ?></span>
+			<p>Review List</p>
+		</div>
+	</div>
+	<div class="four col-md-3 mb-5">
+		<div class="counter-box">
+        <i class="fa-regular fa-microchip"></i>
+			<span class="counter"><?php include "count/class.php" ?></span>
+			<p>Class List</p>
+		</div>
+	</div>
+	<div class="four col-md-3 mb-5">
+		<div class="counter-box">
+        <i class="fa-duotone fa-screen-users"></i>
+			<span class="counter"><?php include "count/batch.php"; ?></span>
+			<p>Batch List</p>
+		</div>
+	</div>
+    <div class="four col-md-3 mb-5">
+		<div class="counter-box">
+        <i class="fa-duotone fa-user-tie"></i>
+			<span class="counter"><?php include "count/admin.php"; ?></span>
+			<p>Admin List</p>
+		</div>
+	</div>
+    <div class="four col-md-3 mb-5">
+		<div class="counter-box">
+        <i class="fa-duotone fa-clock-rotate-left"></i>
+			<span class="counter"><?php include "count/login.php"; ?></span>
+			<p>Login List</p>
+		</div>
+	</div>
+    <div class="four col-md-3 mb-5">
+		<div class="counter-box">
+        <i class="fa-duotone fa-comment"></i>
+			<span class="counter"><?php include "count/feedback.php"; ?></span>
+			<p>Feedback List</p>
+		</div>
+	</div>
+    <div class="four col-md-3 mb-5">
+		<div class="counter-box">
+        <i class="fa-solid fa-message-arrow-down"></i>
+			<span class="counter">0</span>
+			<p>Contact List</p>
+		</div>
+	</div>
+  </div>	
 </div>
+
+<?php include "include/footer.php"; ?>

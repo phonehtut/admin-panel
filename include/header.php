@@ -87,10 +87,6 @@
         }
 
         /* Initially hide the content */
-        body {
-            overflow: hidden;
-            /* Prevent scrolling while loading */
-        }
     </style>
 </head>
 
